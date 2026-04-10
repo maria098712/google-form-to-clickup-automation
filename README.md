@@ -33,4 +33,5 @@ When a user submits a Google Form:
 - Webhook triggers
 - Multi-step workflow automation
 - Dynamic data mapping between apps
-  
+  ## 📸 Workflow Preview
+![Workflow](images/workflow-screenshot.png)
