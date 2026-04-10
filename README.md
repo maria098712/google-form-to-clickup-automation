@@ -34,4 +34,4 @@ When a user submits a Google Form:
 - Multi-step workflow automation
 - Dynamic data mapping between apps
   ## 📸 Workflow Preview
-![Workflow](images/workflow-screenshot.png)
+![Workflow](https://github.com/maria098712/google-form-to-clickup-automation/blob/0898e08e399556a3dc9995f50b8ecb3af83d653d/workflow%20n8n.png)
