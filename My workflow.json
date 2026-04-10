@@ -1,0 +1,133 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "16GVWBADecHKIbr2crsfH4jsg1ctkuCCxmNyZMamK1Y0",
+          "mode": "list",
+          "cachedResultName": "project request form (Responses)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16GVWBADecHKIbr2crsfH4jsg1ctkuCCxmNyZMamK1Y0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 577227518,
+          "mode": "list",
+          "cachedResultName": "Form responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/16GVWBADecHKIbr2crsfH4jsg1ctkuCCxmNyZMamK1Y0/edit#gid=577227518"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -64
+      ],
+      "id": "b558a3a0-945f-4a79-b5c4-d1f9d3139956",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "ISgOokdLgQ2CAAQa",
+          "name": "Google Sheets Trigger OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "team": "90182608809",
+        "space": "901810574897",
+        "folderless": true,
+        "list": "901817303341",
+        "name": "={{ $json[\"Name\"] }}",
+        "additionalFields": {
+          "content": "=Email: {{ $json[\"Your official Email\"] }}\nUniversity: {{ $json[\"University\"] }}\nMajor: {{ $json[\"Major\"] }}\nProject: {{ $json[\"Your fin year project\"] }}\nGraduation Date: {{ $json[\"Graduation Date\"] }}"
+        }
+      },
+      "type": "n8n-nodes-base.clickUp",
+      "typeVersion": 1,
+      "position": [
+        48,
+        -64
+      ],
+      "id": "f08fa1b9-bc99-4f3b-a7a1-630bfae5a569",
+      "name": "Create a task",
+      "credentials": {
+        "clickUpOAuth2Api": {
+          "id": "a6IzGJqhwkTJMkNM",
+          "name": "ClickUp OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "=mariakhan15ty@gmail.com",
+        "subject": "=Thank you {{ $json[\"Name\"] }}, your submission is received!",
+        "message": "=Dear {{ $json[\"Name\"] }},  Thank you for submitting your details. We have received your information and will get back to you soon.  Your Details: - University: {{ $json[\"University\"] }} - Major: {{ $json[\"Major\"] }} - Project: {{ $json[\"Your fin year project\"] }} - Graduation Date: {{ $json[\"Graduation Date\"] }}  Best regards, Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        -64
+      ],
+      "id": "95392545-074e-4deb-b3d1-fc3793f4044a",
+      "name": "Send a message",
+      "webhookId": "02c17a14-5bf6-444c-afbd-d6ef94024cf8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Z2EFucn29LAE8MbU",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Create a task",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a task": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "be0fc16d-9ee7-4dab-a8da-7253bcd93882",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "dd81e995b743d3c75cf02c2355595b3472c7025aa8729bb8d8dcb801b8487a8f"
+  },
+  "id": "p4AzDx3S7btZxAgt",
+  "tags": []
+}
